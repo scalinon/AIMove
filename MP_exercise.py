@@ -88,22 +88,23 @@ t = np.linspace(0,1,param["nbData"]) # Time range
 phi = build_phi_bernstein(param) #Bernstein polynomials 
 # phi = build_phi_fourier(param) #Fourier basis functions
 
+psi = np.kron(phi, np.identity(param["nbVar"])) # Compute psi matrix (multidimensional basis functions) from phi matrix 
+
 
 # EXERCISE
 # ============================================
-# 1) Compute psi matrix (multidimensional basis functions) from phi matrix 
-# 2) Compute weights w from data x and psi matrix
-# 3) Compute the reconstructed trajectory x_hat from the estimated weights w, by removing "x_hat = x" below
+# 1) Compute weights w from data x and psi matrix
+# 2) Compute the reconstructed trajectory x_hat from the estimated weights w, by removing "x_hat = x" below
 x_hat = x
-# 4) Test the code for different forms of basis functions (RBF, Fourier, etc.)
-# 5) Extend the code to handle multiple demonstrations
+# 3) Test the code for different number of basis functions and for different forms of basis functions (RBF, Fourier, etc.)
+# 4) Extend the code to handle multiple demonstrations
 
 
 # Plotting
 # =========
 fig,axs = plt.subplots(2,1)
-axs[0].plot(x[::2], x[1::2], c='black', label='Original' )
-axs[0].plot(x_hat[::2], x_hat[1::2], c='r', label='Reproduced' )
+axs[0].plot(x[::2], x[1::2], c='black', label='Original')
+axs[0].plot(x_hat[::2], x_hat[1::2], c='r', label='Reproduced')
 axs[0].axis("off")
 axs[0].axis("equal")
 axs[0].legend()
