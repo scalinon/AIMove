@@ -23,9 +23,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# General param parameters
+# Parameters
 # ===============================
-
 param = {
     "nbData" : 100, # Number of data points
     "nbVarPos" : 2, # Dimension of position data
@@ -44,6 +43,13 @@ param["muQ"] = np.vstack((  # Sparse reference
 
 Q = np.zeros(( nb_var * param["nbData"] , nb_var * param["nbData"] ))   # Task precision
 Q[-nb_var:,-nb_var:] = np.identity(nb_var)
+
+
+# EXERCISE
+# ============================================
+# 1) Extend the code to a viapoints task (instead of a single target to reach)
+# 2) Observe the different behaviors when using velocity commands or acceleration commands
+
 
 # Dynamical System settings (discrete)
 # =====================================
@@ -66,11 +72,13 @@ for i in range(1,param["nbData"]):
     Su[nb_var*i:nb_var*i+M.shape[0],0:M.shape[1]] = M
     M = np.hstack((np.dot(A,M),B)) # [0,nb_state_var-1]
 
+
 # Batch LQR Reproduction
 # =====================================
 x0 = np.zeros((nb_var,1))
 u_hat = np.linalg.inv(Su.T @ Q @ Su + R) @ Su.T @ Q @ (param["muQ"] - Sx @ x0)
 x_hat = (Sx @ x0 + Su @ u_hat).reshape((-1,nb_var))
+
 
 # Plotting
 # =========

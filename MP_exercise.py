@@ -97,7 +97,7 @@ psi = np.kron(phi, np.identity(param["nbVar"])) # Compute psi matrix (multidimen
 # 2) Compute the reconstructed trajectory x_hat from the estimated weights w, by removing "x_hat = x" below
 x_hat = x
 # 3) Test the code for different number of basis functions and for different forms of basis functions (RBF, Fourier, etc.)
-# 4) Extend the code to handle multiple demonstrations
+# 4) (optional) Extend the code to handle multiple demonstrations 
 
 
 # Plotting
