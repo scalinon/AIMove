@@ -30,7 +30,7 @@ param = {
     "nbVarPos" : 2, # Dimension of position data
     "nbDeriv" : 2,  # Number of static and dynamic features (2 -> [x,dx])
     "dt" : 1e-2, # Time step duration
-    "rfactor" : 1e-5 # Control cost
+    "rfactor" : 1e-8 # Control cost
 }
 
 nb_var = param["nbVarPos"] * param["nbDeriv"] # Dimension of state vector
@@ -85,20 +85,20 @@ x_hat = (Sx @ x0 + Su @ u_hat).reshape((-1,nb_var))
 plt.figure()
 plt.title("2D Trajectory")
 plt.scatter(x_hat[0,0],x_hat[0,1],c='black',s=100)
-plt.scatter(param["muQ"][-nb_var],param["muQ"][-nb_var+1],c='blue',s=100)
-plt.plot( x_hat[:,0] , x_hat[:,1],c='black')
+plt.scatter(param["muQ"][-nb_var],param["muQ"][-nb_var+1],c='red',s=100)
+plt.plot(x_hat[:,0], x_hat[:,1], c='black')
 plt.axis("off")
 plt.gca().set_aspect('equal', adjustable='box')
 
 fig,axs = plt.subplots(2,1)
-axs[0].hlines(param["muQ"][-nb_var],0,param["nbData"],color='red')
-axs[0].plot(x_hat[:,0])
+axs[0].scatter(param["nbData"], param["muQ"][-nb_var], color='red')
+axs[0].plot(x_hat[:,0], c='black')
 axs[0].set_ylabel("$x_1$")
 axs[0].set_xticks([0,param["nbData"]])
 axs[0].set_xticklabels(["0","T"])
 
-axs[1].hlines(param["muQ"][-nb_var+1],0,param["nbData"],color='red')
-axs[1].plot(x_hat[:,1])
+axs[1].scatter(param["nbData"], param["muQ"][-nb_var+1], color='red')
+axs[1].plot(x_hat[:,1], c='black')
 axs[1].set_ylabel("$x_2$")
 axs[1].set_xlabel("$t$")
 axs[1].set_xticks([0,param["nbData"]])

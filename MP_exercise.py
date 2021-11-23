@@ -28,10 +28,10 @@ from pathlib import Path
 
 # Building piecewise constant basis functions
 def build_phi_piecewise(param):
-    index_list = np.linspace( 0 , param["nbData"] , param["nbFct"]+1 )
+    index_list = np.linspace(0, param["nbData"], param["nbFct"]+1)
     phi = np.zeros((param["nbData"],param["nbFct"]))
     for i in range(param["nbFct"]):
-        phi[ int(index_list[i]):int(index_list[i+1]) , i ] = 1
+        phi[int(index_list[i]):int(index_list[i+1]), i] = 1
     return phi
 
 # Building radial basis functions (RBFs)
