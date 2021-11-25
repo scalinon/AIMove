@@ -93,11 +93,14 @@ psi = np.kron(phi, np.identity(param["nbVar"])) # Compute psi matrix (multidimen
 
 # EXERCISE
 # ============================================
-# 1) Compute weights w from data x and psi matrix
-# 2) Compute the reconstructed trajectory x_hat from the estimated weights w, by removing "x_hat = x" below
+# 1) Compute weights w from the data x and from the psi matrix describing the linear mapping between the original trajectory 
+#    space and a subspace of reduced dimensionality (superposition weights).
+# 2) Compute the reconstructed trajectory x_hat from the estimated weights w, by replacing the program line "x_hat = x" below.
 x_hat = x
-# 3) Test the code for different number of basis functions and for different forms of basis functions (RBF, Fourier, etc.)
-# 4) (optional) Extend the code to handle multiple demonstrations 
+# 3) Test the code for different number of basis functions and for different forms of basis functions (RBF, Fourier, etc.).
+# 4) Evaluate the compression factor of this representation for different values of "nbData" and "nbFct".
+# 5) Extend the code to handle multiple demonstrations x_i, in order to find a set of weights w_i, and compute w as the average 
+#    of all w_i, which can then be used to reconstruct a generalization of the demonstrated trajectories.
 
 
 # Plotting
